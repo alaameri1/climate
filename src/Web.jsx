@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
+import PublicIcon from '@mui/icons-material/Public';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -29,25 +29,56 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [
+  {
+    title: "le changement climatique c'est qoui ?   ",
+    description: "Occupant une part de plus en plus importante au sein des préoccupations mondiales, le changement climatique est le résultat de l'influence des gaz à effet de serre produits par les activités humaines sur le climat de la Terre. Certains de ses impacts sont déjà visibles tandis que ceux à plus long terme sont anticipables grâce aux modèles de prévisions de climat développés par les scientifiques.",
+    image: 'https://images.unsplash.com/photo-1570095378004-ce65d6c2d5bb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    title: "le climat de la Terre",
+    description: " Selon l’Organisation météorologique mondiale (OMM), le climat correspond aux conditions météorologiques et atmosphériques moyennes observées à un endroit donné (température, précipitations, ensoleillement, humidité, etc.) et calculées à partir d’observations d’au moins 30 ans. Les climats terrestres sont variés (équatorial, tropical, tempéré, polaire, désertique, etc.).",
+    image: 'https://images.unsplash.com/photo-1465917566611-efba2904dd8a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    title: "L'effet de serre",
+    description: "L'effet de serre se produit lorsque les rayons du soleil atteignent la Terre. Une partie est absorbée, réchauffant les compartiments terrestres, tandis qu'une autre partie est réfléchie. En raison de la forme sphérique de la Terre, certaines zones, comme l'équateur, reçoivent plus de rayons solaires que d'autres, formant ainsi les différents climats terrestres.",
+    image: 'https://images.unsplash.com/photo-1624324378932-68e20f332982?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    title: " Le déséquilibre climatique",
+    description: " Le climat terrestre varie naturellement sur différentes échelles temporelles, allant de l'intra-saisonnier à l'alternance de périodes glaciaires et interglaciaires sur des dizaines de milliers d'années. Cependant, depuis le XXe siècle, les activités humaines ont entraîné une modification rapide et anormale du climat, principalement due à l'augmentation des gaz à effet de serre depuis la révolution industrielle. Ce phénomène, appelé réchauffement climatique, se traduit par une augmentation des températures à la surface du globe.",
+      image: 'https://plus.unsplash.com/premium_photo-1664298311043-46b3814a511f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  
+  
+];
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Web() {
+  const scrollToCards = () => {
+    const cardsSection = document.getElementById('cards');
+    cardsSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToQuiz = () => {
+    const quizSection = document.getElementById('quiz');
+    quizSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
+          <PublicIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            Album layout
+            climate.talk
           </Typography>
         </Toolbar>
       </AppBar>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: 'background.paper',
@@ -55,7 +86,7 @@ export default function Web() {
             pb: 6,
           }}
         >
-          <Container maxWidth="sm">
+          <Container maxWidth="lg">
             <Typography
               component="h1"
               variant="h2"
@@ -63,12 +94,10 @@ export default function Web() {
               color="text.primary"
               gutterBottom
             >
-              Album layout
+              climate change infos
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Something short and leading about the collection below—its contents,
-              the creator, etc. Make it short and sweet, but not too short so folks
-              don&apos;t simply skip over it entirely.
+              Bienvenue sur notre site dédié au changement climatique. Nous vous fournissons des informations précises sur les causes et les impacts du changement climatique, tout en démystifiant les idées fausses. Explorez nos ressources pour une compréhension éclairée et des actions concrètes en faveur d'un avenir durable.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -76,62 +105,94 @@ export default function Web() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button variant="contained" onClick={scrollToCards}>
+                Découvrir le climat.
+              </Button>
+              <Button variant="outlined" onClick={scrollToQuiz}>
+                Essayez notre quiz.
+              </Button>
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+        <Container sx={{ py: 8 }} maxWidth="md" id="cards">
+          <Grid container spacing={4} maxWidth="lg">
+            {cards.map((card, index) => (
+              <Grid item key={index} xs={12} sm={6} md={6}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
                   <CardMedia
                     component="div"
                     sx={{
-                      // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random?wallpapers"
+                    image={card.image}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {card.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {card.description}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
-      </main>
-      {/* Footer */}
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
         <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
+          variant="h4"
+          sx={{ width: '50%' }}
+          position={'relative'}
+          ml="350px"
+        
         >
-          Something here to give the footer a purpose!
+          idées fausses courantes sur le changement climatique et leurs corrections
         </Typography>
-        <Copyright />
-      </Box>
-      {/* End footer */}
+        
+        <Grid item xs={10} md={4}>
+          
+            <Box bgcolor="red" p={2} color="white" maxWidth="md" ml="310px">
+              Le climat de la Terre a toujours été constant.
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box bgcolor="lightgreen" p={2} color="white" maxWidth="md" ml="310px">
+              Correction : Le climat de la Terre a connu des variations naturelles, mais les changements actuels sont largement influencés par les activités humaines.
+            </Box>
+          </Grid>    
+          <Grid item xs={12} md={6}>
+            <Box bgcolor="red" p={2} color="white" maxWidth="md" ml="310px">
+              Le climat de la Terre a toujours été constant.
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box bgcolor="lightgreen" p={2} color="white" maxWidth="md" ml="310px">
+              Correction : Le climat de la Terre a connu des variations naturelles, mais les changements actuels sont largement influencés par les activités humaines.
+            </Box>
+          </Grid>   <Grid item xs={12} md={6}>
+            <Box bgcolor="red" p={2} color="white" maxWidth="md" ml="310px">
+              Le climat de la Terre a toujours été constant.
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box bgcolor="lightgreen" p={2} color="white" maxWidth="md" ml="310px">
+              Correction : Le climat de la Terre a connu des variations naturelles, mais les changements actuels sont largement influencés par les activités humaines.
+            </Box>
+          </Grid>   <Grid item xs={12} md={6}>
+            <Box bgcolor="red" p={2} color="white" maxWidth="md" ml="310px">
+              Le climat de la Terre a toujours été constant.
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box bgcolor="lightgreen" p={2} color="white" maxWidth="md" ml="310px">
+              Correction : Le climat de la Terre a connu des variations naturelles, mais les changements actuels sont largement influencés par les activités humaines.
+            </Box>
+          </Grid> 
+          <div id="quiz"></div>
+        {/* ... your quiz content ... */}
+      </main>
     </ThemeProvider>
   );
 }
